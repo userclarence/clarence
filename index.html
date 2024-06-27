@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Names and Sort by Subject</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        form label {
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        form input[type="text"], form select {
+            padding: 8px;
+            margin-bottom: 10px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        form button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        form button:hover {
+            background-color: #0056b3;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        ul li {
+            padding: 10px;
+            background-color: #f9f9f9;
+            margin-bottom: 5px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+        ul h2 {
+            margin-top: 30px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Enter Names and Sort by Subject</h1>
+
+        <!-- Form to enter names -->
+        <form id="nameForm">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" required>
+            
+            <label for="subject">Subject:</label>
+            <select id="subject" name="subject" required>
+                <option value="en">EN</option>
+                <option value="et">ET</option>
+                <option value="rli">RLI</option>
+            </select>
+            
+            <button type="submit">Submit</button>
+        </form>
+
+        <!-- Lists to display names based on subjects -->
+        <h2>EN Names:</h2>
+        <ul id="en-list"></ul>
+
+        <h2>ET Names:</h2>
+        <ul id="et-list"></ul>
+
+        <h2>RLI Names:</h2>
+        <ul id="rli-list"></ul>
+    </div>
+
+    <!-- JavaScript to handle form submission and update lists -->
+    <script>
+        function addToList(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            const name = document.getElementById('name').value.trim();
+            const subject = document.getElementById('subject').value;
+
+            if (name === "") {
+                alert("Please enter your full name.");
+                return;
+            }
+
+            fetch('https://userclarence.pythonanywhere.com/add-name', { // Replace with your PythonAnywhere URL
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ name, subject })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to add name.');
+                }
+                return response.json();
+            })
+            .then(data => {
+                alert(data.message);
+                addToDom(name, subject.toLowerCase() + '-list');
+                document.getElementById('name').value = ''; // Clear input field
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Failed to add name.');
+            });
+        }
+
+        function addToDom(name, listId) {
+            const li = document.createElement('li');
+            li.textContent = name;
+            document.getElementById(listId).appendChild(li); // Append new name to the appropriate list
+        }
+
+        document.getElementById('nameForm').addEventListener('submit', addToList);
+    </script>
+</body>
+</html>
