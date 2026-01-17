@@ -2,32 +2,83 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>I Love You Asmae</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Asmae</title>
     <style>
+        /* Creates a soft, romantic pink gradient background */
         body {
             margin: 0;
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: white;
+            background: linear-gradient(135deg, #fff5f5 0%, #fed7d7 100%);
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            overflow: hidden;
+        }
+
+        .card {
+            text-align: center;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            backdrop-filter: blur(10px);
         }
 
         h1 {
-            color: red;
-            font-size: 100px;
-            font-family: Arial, Helvetica, sans-serif;
-            text-align: center;
-            font-weight: bold;
+            color: #e53e3e;
+            font-size: 70px;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .heart {
+            display: inline-block;
+            color: #f56565;
+            animation: heartbeat 1.2s infinite;
+        }
+
+        p {
+            color: #718096;
+            font-size: 30px;
+            margin-top: 10px;
+            font-weight: 300;
+            font-style: italic;
+        }
+
+        /* The pulsing heart animation */
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            14% { transform: scale(1.3); }
+            28% { transform: scale(1); }
+            42% { transform: scale(1.3); }
+            70% { transform: scale(1); }
+        }
+
+        /* Floating background decoration */
+        .floating-circles {
+            position: absolute;
+            z-index: -1;
+            background: rgba(255, 182, 193, 0.4);
+            border-radius: 50%;
+            animation: float 6s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
         }
     </style>
 </head>
 <body>
-    <h1>I LOVE YOU ASMAE ❤️ forever
-    
-     happy birthay my love
-    </h1>
-</body> 
+    <div class="floating-circles" style="width: 100px; height: 100px; top: 10%; left: 10%;"></div>
+    <div class="floating-circles" style="width: 150px; height: 150px; bottom: 15%; right: 10%; animation-delay: 2s;"></div>
+
+    <div class="card">
+        <h1>I LOVE YOU ASMAE <span class="heart">❤️</span></h1>
+        <p>Happy Birthday My Love, Forever</p>
+    </div>
+</body>
 </html>
-
-
