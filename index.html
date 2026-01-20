@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For My Queen, Asmae</title>
+    <title>For Asmae, Always</title>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@300;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-pink: #ffafbd;
-            --deep-red: #e53e3e;
-            --soft-white: #fff5f5;
+            --bg-color: #fff0f3;
+            --accent-red: #ff4d6d;
+            --text-grey: #4a4a4a;
         }
 
         body {
@@ -18,136 +18,124 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(to bottom, var(--soft-white), var(--primary-pink));
+            background: var(--bg-color);
             font-family: 'Quicksand', sans-serif;
             overflow: hidden;
-            text-align: center;
         }
 
-        /* Initial Button/Envelope */
-        #start-button {
-            padding: 20px 40px;
-            font-size: 24px;
-            background: white;
-            color: var(--deep-red);
+        #start-btn {
+            z-index: 100;
+            padding: 15px 30px;
+            font-size: 20px;
+            background: var(--accent-red);
+            color: white;
             border: none;
             border-radius: 50px;
             cursor: pointer;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
+            box-shadow: 0 4px 15px rgba(255, 77, 109, 0.4);
             font-family: 'Dancing Script', cursive;
-            z-index: 10;
         }
 
-        #start-button:hover {
-            transform: scale(1.1);
-        }
-
-        /* Hidden Main Card */
-        .card {
+        .container {
             display: none;
-            padding: 50px;
-            background: rgba(255, 255, 255, 0.85);
-            border-radius: 40px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(15px);
-            max-width: 80%;
-            border: 2px solid white;
-            animation: fadeIn 2s forwards;
+            position: relative;
+            text-align: center;
+            padding: 30px;
+            width: 90%;
+            max-width: 500px;
+            z-index: 10;
         }
 
         h1 {
             font-family: 'Dancing Script', cursive;
-            color: var(--deep-red);
-            font-size: clamp(40px, 8vw, 80px);
-            margin-bottom: 10px;
+            color: var(--accent-red);
+            font-size: 3.5rem;
+            margin: 0;
+            opacity: 0;
+            animation: fadeIn 2s forwards;
         }
 
-        .heart-main {
-            display: block;
-            font-size: 60px;
-            margin: 20px 0;
-            animation: heartbeat 1.2s infinite;
-        }
-
-        p {
-            font-size: clamp(18px, 4vw, 28px);
-            color: #4a5568;
+        /* The Typing Message */
+        #message {
+            font-size: 1.5rem;
+            color: var(--text-grey);
+            margin-top: 20px;
             line-height: 1.6;
+            min-height: 100px;
         }
 
-        .sub-text {
-            font-size: 16px;
-            color: #a0aec0;
-            margin-top: 30px;
-            letter-spacing: 3px;
+        .heart-icon {
+            color: var(--accent-red);
+            font-size: 50px;
+            margin-top: 20px;
+            animation: pulse 1.5s infinite;
         }
 
-        /* Animations */
-        @keyframes heartbeat {
-            0%, 100% { transform: scale(1); }
+        /* Floating Hearts Animation */
+        .floating-heart {
+            position: absolute;
+            bottom: -20px;
+            color: var(--accent-red);
+            opacity: 0.5;
+            user-select: none;
+            animation: floatUp 4s linear infinite;
+        }
+
+        @keyframes floatUp {
+            to { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
             50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Falling Hearts Background */
-        .falling-heart {
-            position: absolute;
-            top: -20px;
-            color: var(--deep-red);
-            opacity: 0.6;
-            pointer-events: none;
-            animation: fall linear forwards;
-        }
-
-        @keyframes fall {
-            to {
-                transform: translateY(110vh) rotate(360deg);
-            }
+            to { opacity: 1; }
         }
     </style>
 </head>
 <body>
 
-    <button id="start-button" onclick="revealSurprise()">For Asmae (Open with Love) ❤️</button>
+    <button id="start-btn" onclick="startExperience()">Click if you are Asmae ❤️</button>
 
-    <div class="card" id="main-card">
-        <h1>I Love You, Asmae</h1>
-        <span class="heart-main">❤️</span>
-        <p>Happy Birthday to the woman who holds my heart.<br>
-        Today, I celebrate <strong>you</strong> and the beautiful soul you are.</p>
-        <p style="font-style: italic;">"You are my today, and all of my tomorrows."</p>
-        <div class="sub-text">FOREVER & ALWAYS</div>
+    <div class="container" id="main-content">
+        <h1>Asmae...</h1>
+        <div id="message"></div>
+        <div class="heart-icon">❤</div>
     </div>
 
     <script>
-        function revealSurprise() {
-            // Hide button
-            document.getElementById('start-button').style.display = 'none';
-            // Show card
-            document.getElementById('main-card').style.display = 'block';
+        const messageText = "I just wanted to remind you that you are my favorite person. In a world full of noise, you are my peace. I don't need a special reason to tell you how much I love you—I just do, with all my heart, every single day.";
+        
+        function startExperience() {
+            document.getElementById('start-btn').style.display = 'none';
+            document.getElementById('main-content').style.display = 'block';
             
             // Start heart rain
-            setInterval(createHeart, 300);
+            setInterval(createHeart, 400);
+            
+            // Start typing effect
+            typeWriter(messageText, 0);
+        }
+
+        function typeWriter(text, i) {
+            if (i < text.length) {
+                document.getElementById("message").innerHTML += text.charAt(i);
+                setTimeout(() => typeWriter(text, i + 1), 50);
+            }
         }
 
         function createHeart() {
             const heart = document.createElement('div');
-            heart.classList.add('falling-heart');
-            heart.innerHTML = '❤️';
+            heart.classList.add('floating-heart');
+            heart.innerHTML = '❤';
             heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.fontSize = Math.random() * 20 + 10 + 'px';
-            heart.style.animationDuration = Math.random() * 3 + 2 + 's';
+            heart.style.fontSize = Math.random() * 20 + 15 + 'px';
+            heart.style.animationDuration = Math.random() * 2 + 3 + 's';
             document.body.appendChild(heart);
-
-            // Remove heart after it falls to keep page fast
-            setTimeout(() => {
-                heart.remove();
-            }, 5000);
+            setTimeout(() => heart.remove(), 4000);
         }
     </script>
 </body>
