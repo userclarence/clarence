@@ -24,7 +24,6 @@ body {
     overflow: hidden;
 }
 
-/* Shared card style */
 .card {
     max-width: 520px;
     width: 90%;
@@ -42,19 +41,9 @@ body {
     to { opacity: 1; transform: scale(1); }
 }
 
-h1 {
-    font-family: 'Dancing Script', cursive;
-    font-size: 3.2rem;
-    color: var(--pink);
-    margin-bottom: 15px;
-}
+h1 { font-family: 'Dancing Script', cursive; font-size: 3.2rem; color: var(--pink); margin-bottom: 15px; }
+p { font-size: 1.3rem; color: #444; }
 
-p {
-    font-size: 1.3rem;
-    color: #444;
-}
-
-/* Buttons */
 .answer {
     display: block;
     margin: 14px auto;
@@ -71,101 +60,24 @@ p {
     transition: transform .2s, background .2s;
 }
 
-.answer:hover {
-    transform: scale(1.05);
-    background: #ffe5ec;
-}
+.answer:hover { transform: scale(1.05); background: #ffe5ec; }
 
-/* Hidden main card */
-#main {
-    display: none;
-}
+#main { display: none; }
 
-/* Typing message */
-#message {
-    margin-top: 25px;
-    font-size: 1.45rem;
-    line-height: 1.9;
-    color: #444;
-    min-height: 180px;
-}
+#message { margin-top: 25px; font-size: 1.45rem; line-height: 1.9; color: #444; min-height: 180px; }
 
-.cursor {
-    display: inline-block;
-    width: 10px;
-    height: 1.4em;
-    background: var(--pink);
-    margin-left: 4px;
-    animation: blink 1s infinite;
-}
+.cursor { display: inline-block; width: 10px; height: 1.4em; background: var(--pink); margin-left: 4px; animation: blink 1s infinite; }
+@keyframes blink { 50% { opacity: 0; } }
 
-@keyframes blink {
-    50% { opacity: 0; }
-}
+.heart { font-size: 58px; margin-top: 25px; color: var(--pink); animation: beat 1.4s infinite; cursor: pointer; }
+@keyframes beat { 0%,100% { transform: scale(1); } 50% { transform: scale(1.3); } }
 
-.heart {
-    font-size: 58px;
-    margin-top: 25px;
-    color: var(--pink);
-    animation: beat 1.4s infinite;
-    cursor: pointer;
-}
-
-@keyframes beat {
-    0%,100% { transform: scale(1); }
-    50% { transform: scale(1.3); }
-}
-
-/* Floating hearts */
-.float {
-    position: absolute;
-    bottom: -20px;
-    color: var(--pink);
-    opacity: .7;
-    animation: rise 6s linear forwards;
-    user-select: none;
-}
-
-@keyframes rise {
-    to {
-        transform: translateY(-120vh) rotate(360deg);
-        opacity: 0;
-    }
-}
+.float { position: absolute; bottom: -20px; color: var(--pink); opacity: .7; animation: rise 6s linear forwards; user-select: none; }
+@keyframes rise { to { transform: translateY(-120vh) rotate(360deg); opacity: 0; } }
 </style>
 </head>
 
 <body>
 
 <!-- QUESTION CARD -->
-<div class="card" id="quiz">
-    <h1>Quick question 😌</h1>
-    <p>Who loves you the most? 💓</p>
-
-    <button class="answer" onclick="wrong()">Someone else 🙄</button>
-    <button class="answer" onclick="wrong()">No one (liar)</button>
-    <button class="answer" onclick="right()">Me… obviously 😉</button>
-
-    <p id="tease"></p>
-</div>
-
-<!-- MAIN CONTENT -->
-<div class="card" id="main">
-    <h1>Asmae…</h1>
-    <div id="message"><span id="text"></span><span class="cursor"></span></div>
-    <div class="heart" onclick="burst()">❤</div>
-</div>
-
-<script>
-const text =
-"Good choice 😏\n\n" +
-"I knew you’d get it right.\n\n" +
-"Because let’s be honest…\n" +
-"I’ve been thinking about you\n" +
-"just as much as you’ve been thinking about me.\n\n" +
-"And yes…\n" +
-"you’re smiling right now 😉";
-
-let i = 0;
-
-function right()
+<div class="card" id="quiz
