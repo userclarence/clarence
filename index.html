@@ -1,142 +1,173 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For Asmae, Always</title>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@300;500&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-color: #fff0f3;
-            --accent-red: #ff4d6d;
-            --text-grey: #4a4a4a;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Asmae, Always</title>
 
-        body {
-            margin: 0;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: var(--bg-color);
-            font-family: 'Quicksand', sans-serif;
-            overflow: hidden;
-        }
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
-        #start-btn {
-            z-index: 100;
-            padding: 15px 30px;
-            font-size: 20px;
-            background: var(--accent-red);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(255, 77, 109, 0.4);
-            font-family: 'Dancing Script', cursive;
-        }
+<style>
+:root {
+    --pink: #ff4d6d;
+    --soft-pink: #fff0f3;
+    --dark: #444;
+}
 
-        .container {
-            display: none;
-            position: relative;
-            text-align: center;
-            padding: 30px;
-            width: 90%;
-            max-width: 500px;
-            z-index: 10;
-        }
+* {
+    box-sizing: border-box;
+}
 
-        h1 {
-            font-family: 'Dancing Script', cursive;
-            color: var(--accent-red);
-            font-size: 3.5rem;
-            margin: 0;
-            opacity: 0;
-            animation: fadeIn 2s forwards;
-        }
+body {
+    margin: 0;
+    height: 100vh;
+    background: radial-gradient(circle at top, #ffe5ec, var(--soft-pink));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden;
+}
 
-        /* The Typing Message */
-        #message {
-            font-size: 1.5rem;
-            color: var(--text-grey);
-            margin-top: 20px;
-            line-height: 1.6;
-            min-height: 100px;
-        }
+/* Start Button */
+#start-btn {
+    padding: 16px 36px;
+    font-size: 22px;
+    border: none;
+    border-radius: 60px;
+    cursor: pointer;
+    background: var(--pink);
+    color: white;
+    font-family: 'Dancing Script', cursive;
+    box-shadow: 0 10px 30px rgba(255, 77, 109, 0.4);
+    transition: transform .3s, box-shadow .3s;
+}
 
-        .heart-icon {
-            color: var(--accent-red);
-            font-size: 50px;
-            margin-top: 20px;
-            animation: pulse 1.5s infinite;
-        }
+#start-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 40px rgba(255, 77, 109, 0.6);
+}
 
-        /* Floating Hearts Animation */
-        .floating-heart {
-            position: absolute;
-            bottom: -20px;
-            color: var(--accent-red);
-            opacity: 0.5;
-            user-select: none;
-            animation: floatUp 4s linear infinite;
-        }
+/* Main Card */
+.container {
+    display: none;
+    position: relative;
+    max-width: 520px;
+    width: 90%;
+    padding: 40px 30px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(14px);
+    border-radius: 30px;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+    animation: pop 1.2s ease forwards;
+}
 
-        @keyframes floatUp {
-            to { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
-        }
+@keyframes pop {
+    from { transform: scale(.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
 
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(1); }
-        }
+h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3.6rem;
+    color: var(--pink);
+    margin: 0;
+}
 
-        @keyframes fadeIn {
-            to { opacity: 1; }
-        }
-    </style>
+#message {
+    margin-top: 25px;
+    font-size: 1.4rem;
+    line-height: 1.7;
+    color: var(--dark);
+    min-height: 140px;
+}
+
+/* Heart */
+.heart {
+    font-size: 52px;
+    margin-top: 20px;
+    color: var(--pink);
+    animation: beat 1.4s infinite;
+}
+
+@keyframes beat {
+    0%,100% { transform: scale(1); }
+    50% { transform: scale(1.25); }
+}
+
+/* Floating hearts */
+.floating-heart {
+    position: absolute;
+    bottom: -20px;
+    color: var(--pink);
+    opacity: .6;
+    animation: float 6s linear forwards;
+    user-select: none;
+}
+
+@keyframes float {
+    to {
+        transform: translateY(-120vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    h1 { font-size: 2.9rem; }
+    #message { font-size: 1.25rem; }
+}
+</style>
 </head>
+
 <body>
 
-    <button id="start-btn" onclick="startExperience()">Click if you are Asmae ❤️</button>
+<button id="start-btn" onclick="start()">Click if you are Asmae ❤️</button>
 
-    <div class="container" id="main-content">
-        <h1>Asmae...</h1>
-        <div id="message"></div>
-        <div class="heart-icon">❤</div>
-    </div>
+<div class="container" id="card">
+    <h1>Asmae…</h1>
+    <div id="message"></div>
+    <div class="heart">❤</div>
+</div>
 
-    <script>
-        const messageText = "I just wanted to remind you that you are my favorite person. In a world full of noise, you are my peace. I don't need a special reason to tell you how much I love you—I just do, with all my heart, every single day.";
-        
-        function startExperience() {
-            document.getElementById('start-btn').style.display = 'none';
-            document.getElementById('main-content').style.display = 'block';
-            
-            // Start heart rain
-            setInterval(createHeart, 400);
-            
-            // Start typing effect
-            typeWriter(messageText, 0);
-        }
+<script>
+const text = 
+"I just wanted to remind you that you are my favorite person.\n\n" +
+"In a world full of noise, you are my calm.\n" +
+"My peace. My smile.\n\n" +
+"I don’t need a special reason to say it —\n" +
+"I love you, deeply, endlessly, every single day.";
 
-        function typeWriter(text, i) {
-            if (i < text.length) {
-                document.getElementById("message").innerHTML += text.charAt(i);
-                setTimeout(() => typeWriter(text, i + 1), 50);
-            }
-        }
+let i = 0;
 
-        function createHeart() {
-            const heart = document.createElement('div');
-            heart.classList.add('floating-heart');
-            heart.innerHTML = '❤';
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.fontSize = Math.random() * 20 + 15 + 'px';
-            heart.style.animationDuration = Math.random() * 2 + 3 + 's';
-            document.body.appendChild(heart);
-            setTimeout(() => heart.remove(), 4000);
-        }
-    </script>
+function start() {
+    document.getElementById('start-btn').style.display = 'none';
+    document.getElementById('card').style.display = 'block';
+    type();
+    setInterval(createHeart, 350);
+}
+
+function type() {
+    if (i < text.length) {
+        document.getElementById('message').innerHTML +=
+            text.charAt(i) === "\n" ? "<br>" : text.charAt(i);
+        i++;
+        setTimeout(type, 35 + Math.random() * 40);
+    }
+}
+
+function createHeart() {
+    const h = document.createElement('div');
+    h.className = 'floating-heart';
+    h.innerHTML = '❤';
+    h.style.left = Math.random() * 100 + 'vw';
+    h.style.fontSize = (16 + Math.random() * 24) + 'px';
+    h.style.animationDuration = (4 + Math.random() * 3) + 's';
+    document.body.appendChild(h);
+    setTimeout(() => h.remove(), 7000);
+}
+</script>
+
 </body>
 </html>
